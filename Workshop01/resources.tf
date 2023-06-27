@@ -20,7 +20,7 @@ resource "docker_container" "bgg-database" {
     name = "${var.app_namespace}-bgg-database"
     image = docker_image.bgg-database.image_id
 
-    network_advance {
+    networks_advanced {
         name = docker_network.bgg-net.id
     }
 
@@ -40,7 +40,7 @@ resource "docker_container" "bgg-backend" {
     name = "${var.app_namespace}-bgg-backend-${count.index}"
     image = docker_image.bgg-backend.image_id
 
-    network_advance {
+    networks_advanced {
         name = docker_network.bgg-net.id
     }
 
@@ -50,7 +50,7 @@ resource "docker_container" "bgg-backend" {
         "BGG_DB_HOST${docker_container.bgg-database.name}",
     ]
 
-    ports = {
+    ports {
         internal = 3000
     }
 }
