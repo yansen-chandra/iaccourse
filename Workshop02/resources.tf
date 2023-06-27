@@ -8,7 +8,7 @@ resource "digitalocean_droplet" "codeserver" {
     region = var.do_region
     size = var.do_size
 
-    sssh_keys = [ data.digitalocean_ssh_key.aipc.id ]    
+    ssh_keys = [ data.digitalocean_ssh_key.aipc.id ]    
   
 }
 
