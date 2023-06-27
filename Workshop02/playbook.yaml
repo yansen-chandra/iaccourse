@@ -59,7 +59,7 @@
   tasks:
   - name: Install NGINX
     apt: 
-      name: NGINX
+      name: nginx
       state: latest
 
   - name: generage cs conf
