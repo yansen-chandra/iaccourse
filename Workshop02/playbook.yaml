@@ -44,7 +44,7 @@
 
   - name: Generate cs service
     template: 
-      src: code=server.service.j2
+      src: code-server.service.j2
       dest: /lib/systemd/system/code-server.service
 
   - name: Enable cs service
@@ -64,7 +64,7 @@
 
   - name: generage cs conf
     template:
-      src: code=server.conf.j2
+      src: code-server.conf.j2
       dest: /etc/nginx/sites-available/code-server.conf
 
   - name: link code-server conf to sites-enabled
@@ -77,7 +77,3 @@
     systemd:
       name: nginx 
       state: restarted
-
-      
-               
-      
