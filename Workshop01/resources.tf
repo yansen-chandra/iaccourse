@@ -47,7 +47,7 @@ resource "docker_container" "bgg-backend" {
     env = [
         "BGG_DB_USER=root",
         "BGG_DB_PASSWORD=changeit",
-        "BGG_DB_HOST${docker_container.bgg-database.name}",
+        "BGG_DB_HOST${err.bgg-database.name}",
     ]
 
     ports {
