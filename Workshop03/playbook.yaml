@@ -21,14 +21,12 @@
     stat:
       path: "{{ cs_dir }}/{{cs_unpacked}}"
     register: dir
-  
   - name: Download and unarchive codeserver
     unarchive:
      src: "{{ cs_archive }}"
      dest: "{{ cs_dir }}"
      remote_src: yes
     when: not dir.stat.exists
-  
   - name: Link directory and binary
     file:
       src: "{{ item.src }}"
@@ -39,9 +37,8 @@
       dest: /usr/lib/code-server
     - src: "{{cs_dir}}/{{cs_unpacked}}/bin/code-server"
       dest: /usr/bin/code-server
-  
-  - name: Copy code server service 
-    template:
+  - name: Copy code-server.service file
+    copy:
       src: code-server.service
       dest: /lib/systemd/system/code-server.service
   - name: Enable code server service
@@ -49,23 +46,22 @@
       name: code-server
       daemon_reload: true
       enabled : true
-      state: started 
-
+      state: started
 - name: Install Nginx
-  hosts: all 
+  hosts: all
   tasks:
   - name: Install nginx
-    apt: 
+    apt:
       name: nginx
       state: latest
-  - name: Copy code-serer.conf
-    template:
+  - name: Copy code-server.conf file
+    copy:
       src: code-server.conf
       dest: /etc/nginx/sites-available/code-server.conf
   - name: Link code-server.conf to /etc/nginx/sites-enabled
     file:
       src: /etc/nginx/sites-available/code-server.conf
-      dest: /etc/nginx/sites-enabled/code-server.conf
+      dest: /etc/nginx/sites-enabled/default
       state: link
   - name: restart nginx
     systemd:
