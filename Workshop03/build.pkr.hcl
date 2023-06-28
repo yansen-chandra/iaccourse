@@ -14,7 +14,7 @@ build {
     provisioner ansible {
         playbook_file = "playbook.yaml"
         ansible_ssh_extra_args = [
-            "-oHostKeyAlgorithm=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa"
+            "-oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa"
         ]   
     }
 }
