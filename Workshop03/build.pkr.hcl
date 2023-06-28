@@ -3,7 +3,7 @@ source digitalocean codeserver {
     image = "ubuntu-20-04-x64"
     region = "sgp1"
     size = "s-1vcpu-1gb"
-    ssh_username = "aipc"
+    ssh_username = "root"
     snapshot_name = "codeserver" 
 }
 build {
